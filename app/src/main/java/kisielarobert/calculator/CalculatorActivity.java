@@ -8,14 +8,37 @@ import android.widget.TextView;
 
 public class CalculatorActivity extends AppCompatActivity {
 
+    public static final String DISPLAY_KEY = "display";
+    public static final String ACCUMULATOR_KEY = "accumulator";
+    public static final String OPERATION_KEY = "operation";
     private String display = "0";
     private double accumulator = 0.0;
     private Operation currentOpperation = Operation.NONE;
+    private TextView displayViewById;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
+
+        displayViewById = (TextView) findViewById(R.id.textView1);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(DISPLAY_KEY, display);
+        outState.putDouble(ACCUMULATOR_KEY, accumulator);
+        outState.putString(OPERATION_KEY, currentOpperation.name());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        display = savedInstanceState.getString(DISPLAY_KEY, "0");
+        accumulator = savedInstanceState.getDouble(ACCUMULATOR_KEY);
+        currentOpperation = Operation.valueOf(savedInstanceState.getString(OPERATION_KEY));
+        updateDisplay();
     }
 
     public void keyClicked(View view) {
@@ -23,8 +46,6 @@ public class CalculatorActivity extends AppCompatActivity {
         Button button = (Button) view;
         //read key string
         String key = button.getText().toString();
-        //read what is on display
-        TextView displayViewById = (TextView) findViewById(R.id.textView1);
 
         switch (key){
             case "0":
@@ -67,6 +88,10 @@ public class CalculatorActivity extends AppCompatActivity {
                 currentOpperation = Operation.NONE;
                 break;
         }
+        updateDisplay();
+    }
+
+    private void updateDisplay() {
         displayViewById.setText(display);
     }
 
