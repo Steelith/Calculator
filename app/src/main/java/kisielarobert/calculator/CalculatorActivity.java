@@ -42,12 +42,29 @@ public class CalculatorActivity extends AppCompatActivity {
                 }
                 display += key;
                 break;
+            case ".":
+                if (!display.contains(".")){
+                    display += key;
+            }
+                break;
             case "+":
             case "-":
                 calculateOperation(key);
                 break;
             case "=":
                 calculateResult();
+                break;
+            case "CE":
+                if (display.length() > 1){
+                    display = display.substring(0, display.length() - 1);
+                } else {
+                    display = "0";
+                }
+                break;
+            case "C":
+                display = "0";
+                accumulator = 0.0;
+                currentOpperation = Operation.NONE;
                 break;
         }
         displayViewById.setText(display);
