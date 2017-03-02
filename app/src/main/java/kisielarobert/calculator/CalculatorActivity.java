@@ -70,7 +70,15 @@ public class CalculatorActivity extends AppCompatActivity {
                 break;
             case "+":
             case "-":
+            case "*":
+            case "/":
                 calculateOperation(key);
+                break;
+            case "SQRT (x)":
+                calculateSquareRoot();
+                break;
+            case "X^2":
+                calculateSquare();
                 break;
             case "=":
                 calculateResult();
@@ -91,6 +99,16 @@ public class CalculatorActivity extends AppCompatActivity {
         updateDisplay();
     }
 
+    private void calculateSquare() {
+        double squareValue = Double.parseDouble(display);
+        displayResult(squareValue * squareValue);
+    }
+
+    private void calculateSquareRoot() {
+        double squareRootValue = Double.parseDouble(display);
+        displayResult(Math.sqrt(squareRootValue));
+    }
+
     private void updateDisplay() {
         displayViewById.setText(display);
     }
@@ -104,6 +122,16 @@ public class CalculatorActivity extends AppCompatActivity {
             case SUBTRACT:
                 displayResult(accumulator - displayValue);
                 break;
+            case MULTIPLY:
+                displayResult(accumulator * displayValue);
+                break;
+            case DIVIDE:
+                if (displayValue != 0) {
+                    displayResult(accumulator / displayValue);
+                    break;
+                } else {
+                    display = "Cannot divide by 0!";
+                }
         }
         accumulator = 0.0;
         currentOpperation = Operation.NONE;

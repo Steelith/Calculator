@@ -2,7 +2,7 @@ package kisielarobert.calculator;
 
     /*public*/ enum Operation {
 
-    NONE(""), ADD("+"), SUBTRACT("-");
+    NONE(""), ADD("+"), SUBTRACT("-"), MULTIPLY("*"), DIVIDE("/");
 
     private final String key;
 
