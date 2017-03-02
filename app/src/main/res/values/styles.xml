@@ -8,10 +8,35 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="KeyStyle">
+    <style name="KeyStyle" parent="Base.Widget.AppCompat.Button.Borderless">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/button_selector</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:onClick">keyClicked</item>
+    </style>
+
+    <style name="KeyStyle.Operational">
+        <item name="android:background">@drawable/button_selector_operation</item>
+    </style>
+
+    <style name="KeyStyle.Special">
+        <item name="android:background">@drawable/button_selector_special</item>
+    </style>
+
+    <style name="DisplayStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_above">@+id/tableLayout</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:gravity">center_vertical|end</item>
+        <item name="android:background">@color/display_background</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">50sp</item>
     </style>
 
 </resources>
